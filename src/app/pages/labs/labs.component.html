@@ -54,6 +54,18 @@
     <ng-template #elseBlock>
         Soy Camilo y soy menor de 18
     </ng-template>
+    <hr />
 
+    <div [ngSwitch]="person().name2">
+        <p *ngSwitchCase="'camilo'">Hola Soy camilo</p>
+        <p *ngSwitchCase="'Diana'">Hola Soy Diana</p>
+        <p *ngSwitchCase="'martin'">Hola Soy martin</p>
+        <p *ngSwitchCase="'avril'">Hola Soy avril</p>
+        <p *ngSwitchDefault>No soy de la familia Del Valle Vásquez</p>
+        <input type="text" [value]="person().name2" (change)="changeName($event)">
+    </div>
+    <hr />
+    <input type="color" [formControl]="colorCtrl">
+    <p>color: {{ colorCtrl.value }}</p>
 </div>
 

@@ -1,13 +1,14 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 
 
 @Component({
   selector: 'app-labs',
   standalone: true,
-  imports: [RouterOutlet, CommonModule],
+  imports: [RouterOutlet, CommonModule, ReactiveFormsModule],
   templateUrl: './labs.component.html',
   styleUrl: './labs.component.css'
 })
@@ -28,10 +29,19 @@ export class LabsComponent {
   disabled = true;
   img = 'https://picsum.photos/300';
   person = signal({
-    name2: "Diana",
+    name2: "Camilo",
     age: 36,
     avatar: 'https://picsum.photos/400'
   })
+
+  colorCtrl = new FormControl();
+
+  constructor(){
+    this.colorCtrl.valueChanges.subscribe((value) => {
+      console.log(value)
+    })
+  }
+
   clickHandler(){
     alert("diste click 1 vez")
   }
@@ -53,6 +63,13 @@ export class LabsComponent {
       }
     })
   }
-  
-
+  changeName(event: Event){
+    const input = event.target as HTMLInputElement;
+    const newValue = input.value;
+    this.person.update((prevState) => {
+      return {...prevState, 
+        name2: String (newValue)
+      }
+    })
+  }
 }
