@@ -217,7 +217,7 @@
     color: #949494;
     text-decoration: line-through;
   }
-  
+
   .todo-list li .destroy {
     display: none;
     position: absolute;
