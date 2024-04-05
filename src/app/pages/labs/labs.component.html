@@ -47,15 +47,26 @@
     <div *ngIf="name() === 'Camilo'">
         ngIf de Camilo
     </div>
+    
+    @if (name() === 'camilo') {
+        <div>ngIf de camilo nuevo lenguaje</div>
+    }
+   
     <input type="number" [value]="person().age" (change)="changeAge($event)">
     <div *ngIf="person().name2 === 'Diana' && person().age > 18; else elseBlock">
         ngIf de Diana
     </div>
+
+    @if(person().name2 === 'Diana' && person().age > 18){
+        <div>Soy Diana y soy mayor de 18</div>
+    } @else {
+        <div>Soy Diana y soy menor de 18 V2</div>
+    }
+
     <ng-template #elseBlock>
         Soy Camilo y soy menor de 18
     </ng-template>
     <hr />
-
     <div [ngSwitch]="person().name2">
         <p *ngSwitchCase="'camilo'">Hola Soy camilo</p>
         <p *ngSwitchCase="'Diana'">Hola Soy Diana</p>
@@ -83,6 +94,40 @@
     <p>
         <input type="">
     </p>
-   
+    <hr />
+    <ul>
+        <p>total: {{ tasks2().length}}</p>
+        <li *ngFor="let task of tasks2(); index as i">
+           {{ i }} {{task}}
+        </li>
+    </ul>
+    <ul>
+        <p>Nueva estructura de lenguaje Angular</p>
+        @for (task of tasks2(); track task; let i = $index) {
+            <li> {{ i }} {{ task }}</li>
+        } @empty {
+            <p><strong>La lista está vacía</strong></p>
+        }
+    </ul>
+    <hr />
+    <div [ngSwitch]="person().name2">
+        <p *ngSwitchCase="'camilo'">Hola Soy camilo</p>
+        <p *ngSwitchCase="'Diana'">Hola Soy Diana</p>
+        <p *ngSwitchCase="'martin'">Hola Soy martin</p>
+        <p *ngSwitchCase="'avril'">Hola Soy avril</p>
+        <p *ngSwitchDefault>No soy de la familia Del Valle Vásquez</p>
+        <input type="text" [value]="person().name2" (change)="changeName($event)">
+    </div>
+    <p>Nuevo ngSwitch</p>
+    <div>
+    @switch (person().name2) {
+        @case ('nicolas') {<p>Soy nicolas</p>}
+        @case ('julian') {<p>Soy julian</p>}
+        @case ('ana') {<p>Soy ana</p>}
+        @default {<p>Yo no soy nadie</p>}
+    }
+    </div>
+    <hr />
+
 </div>
 
